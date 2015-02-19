@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<palettes>
+  <palette name="Actor">
+    <actor name="Person" img="img/person.svg" />
+  </palette>    
+</palettes>

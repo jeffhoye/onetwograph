@@ -1,0 +1,9 @@
+*.pyc
+*.project
+*.pydevproject
+*.log
+*.db
+nohup.out
+/.classpath
+/.settings/
+/bin/
