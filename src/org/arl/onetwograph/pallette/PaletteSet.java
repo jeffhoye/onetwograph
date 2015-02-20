@@ -36,7 +36,9 @@ public class PaletteSet extends TabPane {
     palettes.put("Relation", new Palette<Relation>());
     
     for (Map.Entry<String, Palette> p : palettes.entrySet()) {
-      getTabs().add(new Tab(p.getKey())); // p.getValue()
+      Tab t = new Tab(p.getKey());
+      t.setContent(p.getValue());
+      getTabs().add(t); // p.getValue()
     }
   }
   

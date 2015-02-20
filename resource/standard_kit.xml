@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <palettes>
   <palette name="Actor">
-    <actor name="Person" img="img/person.svg" />
-  </palette>    
+    <actor name="Person" img="resource/img/person.png" />
+    <actor name="Man" img="resource/img/person.png" />
+    </palette>    
 </palettes>
