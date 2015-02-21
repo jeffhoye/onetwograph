@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.arl.onetwograph.thing.Thing;
 
-import javafx.geometry.Insets;
+import javafx.geometry.Insets; 
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
