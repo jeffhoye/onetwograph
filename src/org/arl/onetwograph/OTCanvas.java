@@ -7,11 +7,13 @@ import org.arl.onetwograph.thing.Thing;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 /**
  * Listeners etc for a canvas.
@@ -27,17 +29,22 @@ public class OTCanvas {
   Thing dragging;
   
   Pane pane;
-  Pane canvas; // todo: change to canvas
+  Canvas canvas; 
+  GraphicsContext g;
   
   public OTCanvas(Pane pane, ClipRegistry<Thing> registry) {
     this.registry = registry;
     this.pane = pane;
-    this.canvas = pane;
-    
-    
-    canvas.setOnDragOver(new EventHandler<DragEvent>(){
+//    System.out.println("OTC("+pane.getWidth()+","+pane.getHeight()+")");
+    this.canvas = new Canvas(pane.getPrefWidth(), pane.getPrefHeight());
+    this.pane.getChildren().add(this.canvas);
+    g = this.canvas.getGraphicsContext2D();  
+    g.setStroke(Color.BLUE);
+    g.setFill(Color.RED);
+    g.fillRect(40, 40, 200, 200);
 
-      @Override
+        
+    canvas.setOnDragOver(new EventHandler<DragEvent>(){
       public void handle(DragEvent event) {
         // event.getGestureSource()
         if (event.getDragboard().hasContent(ThingFactory.format)) {
@@ -51,7 +58,6 @@ public class OTCanvas {
       public void handle(DragEvent event) {
         System.out.println("OnDragEntered");
         if (event.getDragboard().hasContent(ThingFactory.format)) {
-          
           event.consume();
         }
       }
@@ -73,15 +79,15 @@ public class OTCanvas {
       }
     });
     
-    canvas.setOnMouseDragged(new EventHandler<MouseEvent>() {
-      public void handle(MouseEvent event) {
-//        System.out.println("OnMouseDragged");
-        if (dragging != null) {
-          dragging.setLocation(event.getX(), event.getY());
+    pane.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        public void handle(MouseEvent event) {
+          System.out.println("OnMouseDragged");
+          if (dragging != null) {
+            dragging.setLocation(event.getX(), event.getY());
+          }
         }
-      }
-    });
-    
+      });
+      
     canvas.setOnMouseDragReleased(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         System.out.println("OnMouseDragReleased");
@@ -95,6 +101,7 @@ public class OTCanvas {
   }
   
   public void startDrag(MouseEvent event, Thing thing) {
+	System.out.println("startDrag:"+thing);  
     dragStartX = event.getX();
     dragStartY = event.getY();
     dragging = thing;

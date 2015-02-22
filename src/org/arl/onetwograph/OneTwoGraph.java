@@ -32,7 +32,6 @@ public class OneTwoGraph extends Application {
     stage.setTitle("ONeTwOGraph");
 
     
-//    Canvas c = new Canvas(300, 250);
     Pane p = new Pane();
     p.setPrefWidth(300);
     p.setPrefHeight(250);
