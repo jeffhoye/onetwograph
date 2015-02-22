@@ -31,15 +31,7 @@ public class Thing extends HasNode {
   public void setCanvas(OTCanvas canvas) {
     this.canvas = canvas;
   }
-  
-  public void setLocation(double x, double y) {
-    Node node = getNode();
-    Bounds b = node.getBoundsInLocal();
-    double w = b.getWidth();
-    double h = b.getHeight();
-    node.relocate(x-w/2.0, y-h/2.0);
-  }
-  
+    
   protected Node generateNode() {
     Node node = super.generateNode();
     node.setOnMousePressed(new EventHandler<MouseEvent>() {

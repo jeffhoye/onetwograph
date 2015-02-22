@@ -28,6 +28,10 @@ public class XMLKitLoader extends DefaultHandler {
     if (tagName.equalsIgnoreCase("actor")) {
       paletteSet.addFactory(new ActorFactory(attributes.getValue("name"),attributes.getValue("img")));
     }
+    
+    if (tagName.equalsIgnoreCase("relation")) {
+      paletteSet.addFactory(new RelationFactory(attributes.getValue("name"),attributes.getValue("img")));
+    }
   }
   
   

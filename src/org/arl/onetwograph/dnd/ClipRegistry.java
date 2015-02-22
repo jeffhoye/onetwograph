@@ -2,6 +2,7 @@ package org.arl.onetwograph.dnd;
 
 import java.util.HashMap;
 
+import javafx.scene.image.Image;
 import javafx.scene.input.DataFormat;
 import javafx.scene.input.Dragboard;
 
@@ -22,6 +23,11 @@ public class ClipRegistry<T> {
   }
   
   public void register(String key, OTFactory<T> t) {
+    System.out.println("ClipRegistry:"+key);
     table.put(key,t);
   }  
+  
+  public Image getImage(String key) {
+    return table.get(key).getIcon();
+  }
 }

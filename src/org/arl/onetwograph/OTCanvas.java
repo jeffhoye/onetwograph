@@ -1,6 +1,8 @@
 package org.arl.onetwograph;
 
 import org.arl.onetwograph.dnd.ClipRegistry;
+import org.arl.onetwograph.dnd.HasNode;
+import org.arl.onetwograph.layout.StraightLine;
 import org.arl.onetwograph.pallette.ThingFactory;
 import org.arl.onetwograph.thing.Thing;
 
@@ -14,6 +16,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 
 /**
  * Listeners etc for a canvas.
@@ -26,22 +29,28 @@ public class OTCanvas {
 
   double dragStartX, dragStartY; // where in the canvas they clicked
   double dragObjStartX, dragObjStartY; // where on the Node they clicked
-  Thing dragging;
+  HasNode dragging;
   
   Pane pane;
-  Canvas canvas; 
-  GraphicsContext g;
+  Pane canvas;
+  
+//  Canvas canvas; 
+//  GraphicsContext g;
   
   public OTCanvas(Pane pane, ClipRegistry<Thing> registry) {
     this.registry = registry;
     this.pane = pane;
+    this.canvas = pane;
+    
 //    System.out.println("OTC("+pane.getWidth()+","+pane.getHeight()+")");
-    this.canvas = new Canvas(pane.getPrefWidth(), pane.getPrefHeight());
-    this.pane.getChildren().add(this.canvas);
-    g = this.canvas.getGraphicsContext2D();  
-    g.setStroke(Color.BLUE);
-    g.setFill(Color.RED);
-    g.fillRect(40, 40, 200, 200);
+    
+    
+//    this.canvas = new Canvas(pane.getPrefWidth(), pane.getPrefHeight());
+//    this.pane.getChildren().add(this.canvas);
+//    g = this.canvas.getGraphicsContext2D();  
+//    g.setStroke(Color.BLUE);
+//    g.setFill(Color.RED);
+//    g.fillRect(40, 40, 200, 200);
 
         
     canvas.setOnDragOver(new EventHandler<DragEvent>(){
@@ -79,10 +88,29 @@ public class OTCanvas {
       }
     });
     
+    pane.setOnMousePressed(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        System.out.println("cOnMousePressed: "+event.getX()+","+event.getY());
+        Circle a = new Circle(event.getX(),event.getY(),8.0);        
+        pane.getChildren().add(a);
+        Circle b = new Circle(event.getX(),event.getY(),8.0);
+        pane.getChildren().add(b);
+        new StraightLine(a, b, registry.getImage("Relation_sees"), pane);
+        dragging = new HasNode(b);
+      }
+    });
+
+    pane.setOnMouseReleased(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        dragging = null;
+      }
+    });
+    
     pane.setOnMouseDragged(new EventHandler<MouseEvent>() {
         public void handle(MouseEvent event) {
-          System.out.println("OnMouseDragged");
+//          System.out.println("OnMouseDragged");
           if (dragging != null) {
+//            System.out.println("dragging: "+event.getX()+","+event.getY());
             dragging.setLocation(event.getX(), event.getY());
           }
         }
@@ -101,7 +129,7 @@ public class OTCanvas {
   }
   
   public void startDrag(MouseEvent event, Thing thing) {
-	System.out.println("startDrag:"+thing);  
+    System.out.println("startDrag:"+thing);  
     dragStartX = event.getX();
     dragStartY = event.getY();
     dragging = thing;

@@ -3,5 +3,8 @@
   <palette name="Actor">
     <actor name="Person" img="resource/img/person.png" />
     <actor name="Man" img="resource/img/person.png" />
-    </palette>    
+  </palette>    
+  <palette name="Relation">
+    <relation name="sees" img="resource/img/r_sees.png" />
+  </palette>    
 </palettes>
