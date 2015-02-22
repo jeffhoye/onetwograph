@@ -11,7 +11,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class XMLKitLoader extends DefaultHandler {
   PaletteSet paletteSet;
-  String curPalette = null;
+  String curPaletteName = null;
   
   public XMLKitLoader(PaletteSet paletteSet) {
     this.paletteSet = paletteSet;
@@ -20,17 +20,18 @@ public class XMLKitLoader extends DefaultHandler {
   
   public void startElement(String uri, String localName, String tagName, Attributes attributes) throws SAXException {
     if (tagName.equalsIgnoreCase("palette")) {
-      curPalette = attributes.getValue("name");
-      System.out.println("curPalette:"+curPalette);
+      curPaletteName = attributes.getValue("name");
+//      System.out.println("curPalette:"+curPaletteName);
+      attributes.getValue("name");
       return;
     }
     
     if (tagName.equalsIgnoreCase("actor")) {
-      paletteSet.addFactory(new ActorFactory(attributes.getValue("name"),attributes.getValue("img")));
+      paletteSet.addFactory(curPaletteName, new ActorFactory(attributes.getValue("name"),attributes.getValue("img")));
     }
     
     if (tagName.equalsIgnoreCase("relation")) {
-      paletteSet.addFactory(new RelationFactory(attributes.getValue("name"),attributes.getValue("img")));
+      paletteSet.addFactory(curPaletteName, new RelationFactory(attributes.getValue("name"),attributes.getValue("img")));
     }
   }
   

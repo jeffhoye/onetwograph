@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -32,8 +33,9 @@ public class Thing extends HasNode {
     this.canvas = canvas;
   }
     
-  protected Node generateNode() {
-    Node node = super.generateNode();
+  @Override
+  protected Pane generateNode() {
+    Pane node = super.generateNode();
     node.setOnMousePressed(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         canvas.startDrag(event,Thing.this);

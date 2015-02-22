@@ -1,6 +1,9 @@
 package org.arl.onetwograph.dnd;
 
+import java.util.Collection;
 import java.util.HashMap;
+
+import org.arl.onetwograph.pallette.ThingFactory;
 
 import javafx.scene.image.Image;
 import javafx.scene.input.DataFormat;
@@ -30,4 +33,22 @@ public class ClipRegistry<T> {
   public Image getImage(String key) {
     return table.get(key).getIcon();
   }
+  
+  public Collection<OTFactory<T>> values() {
+    return table.values();
+  }
+
+  
+  OTFactory<T> selected = null;
+  public void setSelected(OTFactory<T> f) {
+    for (OTFactory<T> t : table.values()) {
+      t.setSelected(t == f);
+    }
+    selected = f;
+  }
+  
+  public OTFactory<T> getSelected() {
+    return selected;
+  }
+  
 }

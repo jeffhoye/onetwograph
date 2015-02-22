@@ -21,16 +21,16 @@ import javafx.scene.paint.Color;
  * @author jeffhoye
  *
  */
-public class Palette<T extends Thing> extends FlowPane {
+public class Palette extends FlowPane {
   public String type;
-  ClipRegistry<Thing> registry;  
-  List<ThingFactory<T>> factories;
+  ClipRegistry registry;  
+  List<ThingFactory> factories;
   
   
-  public Palette(String type, ClipRegistry<Thing> registry) {
+  public Palette(String type, ClipRegistry registry) {
     this.type = type;
     this.registry = registry;
-    factories = new ArrayList<ThingFactory<T>>();
+    factories = new ArrayList<ThingFactory>();
     
     setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY)));
     setPadding(new Insets(5, 5, 5, 5));
@@ -40,11 +40,14 @@ public class Palette<T extends Thing> extends FlowPane {
     setStyle("-fx-background-color: DAE6F3;");
   }
   
-  public void addFactory(ThingFactory<T> pi) {
+  public void addFactory(ThingFactory pi) {
     factories.add(pi);
     getChildren().add(pi.getNode());
     pi.setPalette(this);
     registry.register(pi.getClipRegistryKey(), (OTFactory<Thing>)pi);
   }
 
+  public void setSelected(ThingFactory f) {
+    registry.setSelected(f);
+  }
 }

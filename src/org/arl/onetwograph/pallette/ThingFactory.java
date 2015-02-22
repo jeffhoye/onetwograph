@@ -16,6 +16,8 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -33,6 +35,8 @@ import org.arl.onetwograph.thing.Thing;
 public abstract class ThingFactory<T extends Thing> extends HasNode implements OTFactory<T> {
   public static final DataFormat format = new DataFormat("OTThingFactory"); // for the clipboad
 
+  public static final Background selectedBG = new Background(new BackgroundFill(Color.LIGHTBLUE, new CornerRadii(5.0), Insets.EMPTY));
+  
   protected Palette palette;
   
   public ThingFactory(String type, String iconName) {
@@ -47,9 +51,22 @@ public abstract class ThingFactory<T extends Thing> extends HasNode implements O
     return this.palette.type+"_"+this.text;
   }
   
-  protected Node generateNode() {
-    final VBox node = (VBox)super.generateNode();
-    node.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));  
+  public Pane getBaseNode() {
+    HBox ret = new HBox();
+    ret.setAlignment(Pos.CENTER_LEFT);
+//    ret.setStyle("-fx-border-radius: 5;");
+//    ret.setStyle("-fx-border-color: black;");
+//    ret.setStyle("-fx-border-style: solid;");
+    ret.setMinWidth(200.0);
+    return ret;
+  }
+  
+
+  
+  @Override
+  protected Pane generateNode() {
+    final Pane node = (Pane)super.generateNode();
+//    node.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));  
     
     node.setOnDragDetected(new EventHandler<MouseEvent>() {
 
@@ -71,9 +88,31 @@ public abstract class ThingFactory<T extends Thing> extends HasNode implements O
       }
       
     });
+    
+    node.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        if (selected) {
+          palette.setSelected(null);          
+        } else {
+          palette.setSelected(ThingFactory.this);          
+        }
+      }
+    });
+    
     return node;
   }
 
+  boolean selected = false;
+  public void setSelected(boolean selected) {
+    if (selected == this.selected) return;
+    this.selected = selected;
+    if (selected) {
+      node.setBackground(selectedBG);
+    } else {
+      node.setBackground(null);
+    }
+  }
+  
   public abstract String getItemType();
   
 }

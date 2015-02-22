@@ -34,22 +34,31 @@ public class PaletteSet extends TabPane {
     
     palettes = new LinkedHashMap<String, Palette>();
     
-    palettes.put("Actor", new Palette<Actor>("Actor", clipRegistry));
-    palettes.put("Attribute", new Palette<Attribute>("Attribute", clipRegistry));
-    palettes.put("Prop", new Palette<Prop>("Prop", clipRegistry));
-    palettes.put("Relation", new Palette<Relation>("Relation", clipRegistry));
-    
-    for (Map.Entry<String, Palette> p : palettes.entrySet()) {
-      Tab t = new Tab(p.getKey());
-      t.setContent(p.getValue());
-      getTabs().add(t); // p.getValue()
-    }
+//    palettes.put("Actor", new Palette<Actor>("Actor", clipRegistry));
+//    palettes.put("Attribute", new Palette<Attribute>("Attribute", clipRegistry));
+//    palettes.put("Prop", new Palette<Prop>("Prop", clipRegistry));
+//    palettes.put("Relation", new Palette<Relation>("Relation", clipRegistry));
+//    
+//    for (Map.Entry<String, Palette> p : palettes.entrySet()) {
+//      Tab t = new Tab(p.getKey());
+//      t.setContent(p.getValue());
+//      getTabs().add(t); // p.getValue()
+//    }
   }
   
   
   
-  public void addFactory(ThingFactory pi) {
-    Palette p = palettes.get(pi.getItemType());
+  public void addFactory(String paletteName, ThingFactory pi) {
+    Palette p;
+    if (palettes.containsKey(paletteName)) {
+      p = palettes.get(paletteName);
+    } else {
+      p = new Palette(paletteName, clipRegistry);
+      palettes.put(paletteName, p);
+      Tab t = new Tab(paletteName);
+      t.setContent(p);
+      getTabs().add(t); // p.getValue()
+    } 
     p.addFactory(pi);
   }
 }

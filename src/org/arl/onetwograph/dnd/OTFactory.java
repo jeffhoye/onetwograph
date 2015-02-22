@@ -6,4 +6,5 @@ public interface OTFactory<T> {
   public T getInstance();
   public String getClipRegistryKey();
   public Image getIcon();
+  public void setSelected(boolean b);
 }

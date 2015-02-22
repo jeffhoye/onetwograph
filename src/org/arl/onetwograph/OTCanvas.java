@@ -74,13 +74,13 @@ public class OTCanvas {
     
     pane.setOnMousePressed(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        System.out.println("cOnMousePressed: "+event.getX()+","+event.getY());
-        Circle a = new Circle(event.getX(),event.getY(),8.0);        
-        pane.getChildren().add(a);
-        Circle b = new Circle(event.getX(),event.getY(),8.0);
-        pane.getChildren().add(b);
-        new StraightLine(a, b, registry.getImage("Relation_sees"), pane);
-        dragging = new HasNode(b);
+//        System.out.println("cOnMousePressed: "+event.getX()+","+event.getY());
+//        Circle a = new Circle(event.getX(),event.getY(),8.0);        
+//        pane.getChildren().add(a);
+//        Circle b = new Circle(event.getX(),event.getY(),8.0);
+//        pane.getChildren().add(b);
+//        new StraightLine(a, b, registry.getImage("Relation_sees"), pane);
+//        dragging = new HasNode(b);
       }
     });
 

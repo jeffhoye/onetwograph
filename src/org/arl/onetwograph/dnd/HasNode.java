@@ -6,13 +6,15 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class HasNode {
   protected String text;
   protected Image icon; 
   
-  protected Node node;
+  protected Pane node;
   protected Label label;
   protected ImageView imageView;
   
@@ -26,28 +28,52 @@ public class HasNode {
     this.icon = new Image("file:"+iconName,true);
   }
 
-  public HasNode(Node n) {
+  public HasNode(Pane n) {
     this.node = n;
   }
-
   
-  protected Node generateNode() {
+  public double getWidth() {
+    return 70.0;
+  }
+
+  public double getHeight() {
+    return 50.0;
+  }
+
+  public double getIconWidth() {
+    return 50.0;
+  }
+  
+  public double getIconHeight() {
+    return 50.0;
+  }
+  
+  public Pane getBaseNode() {
+    VBox ret = new VBox();
+    ret.setAlignment(Pos.CENTER);
+    return ret;
+  }
+  
+  protected Pane generateNode() {
     imageView = new ImageView(this.icon);
+    imageView.setPreserveRatio(true);
+    imageView.setFitWidth(getIconWidth());
+    imageView.setFitHeight(getIconHeight());
+    
     label = new Label(this.text);
     
-    VBox node = new VBox();
-    node.setAlignment(Pos.CENTER);
+    Pane node = getBaseNode();
     node.getChildren().add(imageView);
     if (this.text != null) {
       node.getChildren().add(label);
     }
-    node.setPrefHeight(100);
-    node.setPrefWidth(100);
+//    node.setPrefWidth(getWidth());
+    node.setPrefHeight(getHeight());
     
     return node;
   }
   
-  public Node getNode() {
+  public Pane getNode() {
     if (node == null) {
       node = generateNode();
     }
