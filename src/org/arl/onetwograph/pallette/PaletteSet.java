@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.arl.onetwograph.dnd.ClipRegistry;
 import org.arl.onetwograph.thing.*;
 
 import javafx.geometry.Insets;
@@ -23,17 +24,20 @@ import javafx.scene.paint.Color;
  */
 public class PaletteSet extends TabPane {
   LinkedHashMap<String, Palette> palettes;
-
-  public PaletteSet() {
+  ClipRegistry<Thing> clipRegistry;
+  
+  
+  public PaletteSet(ClipRegistry<Thing> clipRegistry) {
+    this.clipRegistry = clipRegistry;
     setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
     setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
     
     palettes = new LinkedHashMap<String, Palette>();
     
-    palettes.put("Actor", new Palette<Actor>());
-    palettes.put("Attribute", new Palette<Attribute>());
-    palettes.put("Prop", new Palette<Prop>());
-    palettes.put("Relation", new Palette<Relation>());
+    palettes.put("Actor", new Palette<Actor>("Actor", clipRegistry));
+    palettes.put("Attribute", new Palette<Attribute>("Attribute", clipRegistry));
+    palettes.put("Prop", new Palette<Prop>("Prop", clipRegistry));
+    palettes.put("Relation", new Palette<Relation>("Relation", clipRegistry));
     
     for (Map.Entry<String, Palette> p : palettes.entrySet()) {
       Tab t = new Tab(p.getKey());

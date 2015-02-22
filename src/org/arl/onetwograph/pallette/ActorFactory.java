@@ -10,7 +10,7 @@ public class ActorFactory extends ThingFactory<Actor> {
 
   @Override
   public Actor getInstance() {
-    return new Actor(type,icon);
+    return new Actor(text,icon);
   }
 
   @Override
