@@ -19,4 +19,9 @@ public class RelationFactory extends ThingFactory<Relation> {
     return "Relation";
   }
 
+  @Override
+  public int getType() {
+    return RELATION;
+  }
+
 }

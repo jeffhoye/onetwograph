@@ -2,11 +2,15 @@ package org.arl.onetwograph;
 
 import org.arl.onetwograph.dnd.ClipRegistry;
 import org.arl.onetwograph.dnd.HasNode;
+import org.arl.onetwograph.dnd.HasPane;
 import org.arl.onetwograph.layout.StraightLine;
 import org.arl.onetwograph.pallette.ThingFactory;
+import org.arl.onetwograph.thing.Noun;
+import org.arl.onetwograph.thing.Relation;
 import org.arl.onetwograph.thing.Thing;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -17,6 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
 
 /**
  * Listeners etc for a canvas.
@@ -25,17 +30,39 @@ import javafx.scene.shape.Circle;
  *
  */
 public class OTCanvas {
-  ClipRegistry<Thing> registry;
+  public ClipRegistry<Thing> registry;
 
 //  double dragStartX, dragStartY; // where in the canvas they clicked
 //  double dragObjStartX, dragObjStartY; // where on the Node they clicked
-  HasNode dragging;
+  public HasNode dragging;
+  public Relation draggingRelation;
   
-  Pane pane;
+  public HasNode nullDragable;
+  
+  public Pane pane;
   
   public OTCanvas(Pane pane, ClipRegistry<Thing> registry) {
     this.registry = registry;
     this.pane = pane;
+    
+    final Shape mouseHandle = new Circle(-100,-100,8.0);
+    mouseHandle.setVisible(false);
+    pane.getChildren().add(mouseHandle);
+    nullDragable = new HasNode() {
+      
+      @Override
+      public void setLocation(double x, double y) {
+        Bounds b = mouseHandle.getBoundsInLocal();
+        double w = b.getWidth();
+        double h = b.getHeight();
+        mouseHandle.relocate(x-w/2.0, y-h/2.0);
+      }
+      
+      @Override
+      public Node getNode() {
+        return mouseHandle;
+      }
+    };
     
     pane.setOnDragOver(new EventHandler<DragEvent>(){
       public void handle(DragEvent event) {
@@ -69,6 +96,7 @@ public class OTCanvas {
     pane.setOnDragDetected(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         System.out.println("OnDragDetected");
+        pane.startFullDrag();
       }
     });
     
@@ -86,7 +114,8 @@ public class OTCanvas {
 
     pane.setOnMouseReleased(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        dragging = null;
+        System.out.println("pane.OnMouseReleased");
+        stopDrag(event,null);
       }
     });
     
@@ -102,7 +131,7 @@ public class OTCanvas {
       
     pane.setOnMouseDragReleased(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-        System.out.println("OnMouseDragReleased");
+        System.out.println("pane.OnMouseDragReleased:"+event.getPickResult().getIntersectedNode());
       }
     });
   }
@@ -112,15 +141,50 @@ public class OTCanvas {
     return thing;
   }
   
-  public void startDrag(MouseEvent event, Thing thing) {
+  public void startDrag(MouseEvent event, HasNode thing, Relation r) {
     System.out.println("startDrag:"+thing);  
 //    dragStartX = event.getX();
 //    dragStartY = event.getY();
     dragging = thing;
+    draggingRelation = r;
   }
 
   public void stopDrag(MouseEvent event, Thing thing) {
+    if (dragging == nullDragable) {
+      nullDragable.getNode().setVisible(false);
+    }
     dragging = null;
+    if (draggingRelation != null) {
+      draggingRelation.remove();
+      draggingRelation = null;
+    }
   }
 
+  public Noun dragTarget = null;
+  public void addDragTarget(Noun noun) {
+    if (dragTarget == noun) return;
+    if (dragTarget != null) {
+      dragTarget.setSelected(false);
+    }
+    noun.setSelected(true);
+    dragTarget = noun;
+  }
+
+  public void removeDragTarget(Noun noun) {
+    if (dragTarget != noun) return;
+    noun.setSelected(false);
+    dragTarget = null;
+  }
+
+  public void catchDrag(Noun noun) {
+    System.out.println("catchDrag:"+noun);
+    if (dragTarget != null) {
+      dragTarget.setSelected(false);      
+    }
+    if (draggingRelation != null) {
+      draggingRelation.setEnd(noun);      
+    }
+    draggingRelation = null;
+    noun.setSelected(false);
+  }
 }

@@ -3,7 +3,7 @@ package org.arl.onetwograph.thing;
 import java.io.Serializable;
 
 import org.arl.onetwograph.OTCanvas;
-import org.arl.onetwograph.dnd.HasNode;
+import org.arl.onetwograph.dnd.HasPane;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Bounds;
@@ -22,7 +22,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-public class Thing extends HasNode {
+public class Thing extends HasPane {
   OTCanvas canvas;
 
   public Thing(String type, Image icon) {
@@ -33,21 +33,4 @@ public class Thing extends HasNode {
     this.canvas = canvas;
   }
     
-  @Override
-  protected Pane generateNode() {
-    Pane node = super.generateNode();
-    node.setOnMousePressed(new EventHandler<MouseEvent>() {
-      public void handle(MouseEvent event) {
-        canvas.startDrag(event,Thing.this);
-      }
-    });
-    
-    node.setOnMouseReleased(new EventHandler<MouseEvent>() {
-      public void handle(MouseEvent event) {
-        System.out.println("Thing.OnMouseReleased");
-        canvas.stopDrag(event, Thing.this);
-      }
-    });
-    return node;
-  }
 }

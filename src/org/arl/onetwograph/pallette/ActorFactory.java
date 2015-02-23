@@ -18,4 +18,10 @@ public class ActorFactory extends ThingFactory<Actor> {
     return "Actor";
   }
 
+  @Override
+  public int getType() {
+    return ACTOR;
+  }
+
+  
 }

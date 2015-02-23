@@ -14,24 +14,52 @@ public abstract class Connection implements ChangeListener<Number>{
   protected Pane canvas;
   
   public Connection(Node a, Node b, Image icon, Pane canvas) {
-    this.a = a;
-    this.b = b;
+    setA(a);
+    setB(b);
     this.icon = new ImageView(icon);
     this.canvas = canvas;
     
     this.canvas.getChildren().add(this.icon);
     
-    a.layoutXProperty().addListener(this);
-    b.layoutYProperty().addListener(this);
-    a.layoutXProperty().addListener(this);
-    b.layoutYProperty().addListener(this);
   }
 
+  public void setA(Node a) {
+    if (a == this.a) return;
+    if (this.a != null) {
+      this.a.layoutXProperty().removeListener(this);
+      this.a.layoutYProperty().removeListener(this);
+    }
+    this.a = a;
+    if (a != null) {
+      a.layoutXProperty().addListener(this);
+      a.layoutYProperty().addListener(this);      
+    } 
+  }
+  
+  public void setB(Node b) {
+    if (b == this.b) return;
+    if (this.b != null) {
+      this.b.layoutXProperty().removeListener(this);
+      this.b.layoutYProperty().removeListener(this);
+    }
+    this.b = b;
+    if (b != null) {
+      b.layoutXProperty().addListener(this);
+      b.layoutYProperty().addListener(this);      
+    } 
+  }
+  
   @Override
   public void changed(ObservableValue<? extends Number> observable,
       Number oldValue, Number newValue) {
     update();
   }
 
-  public abstract void update();  
+  public abstract void update();
+
+  public void remove() {
+    setA(null);
+    setB(null);
+    this.canvas.getChildren().remove(this.icon);
+  }  
 }

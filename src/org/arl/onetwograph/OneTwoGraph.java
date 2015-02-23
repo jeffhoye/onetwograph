@@ -33,8 +33,8 @@ public class OneTwoGraph extends Application {
 
     
     Pane p = new Pane();
-    p.setPrefWidth(300);
-    p.setPrefHeight(250);
+    p.setPrefWidth(500);
+    p.setPrefHeight(500);
     canvas = new OTCanvas(p,clipRegistry);
 
     paletteSet = new PaletteSet(clipRegistry);

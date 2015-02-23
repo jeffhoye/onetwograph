@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
-import org.arl.onetwograph.dnd.HasNode;
+import org.arl.onetwograph.dnd.HasPane;
 import org.arl.onetwograph.dnd.OTFactory;
 import org.arl.onetwograph.thing.Thing;
 
@@ -32,10 +32,9 @@ import org.arl.onetwograph.thing.Thing;
  *
  * @param <T>
  */
-public abstract class ThingFactory<T extends Thing> extends HasNode implements OTFactory<T> {
+public abstract class ThingFactory<T extends Thing> extends HasPane implements OTFactory<T> {
   public static final DataFormat format = new DataFormat("OTThingFactory"); // for the clipboad
 
-  public static final Background selectedBG = new Background(new BackgroundFill(Color.LIGHTBLUE, new CornerRadii(5.0), Insets.EMPTY));
   
   protected Palette palette;
   
@@ -102,17 +101,6 @@ public abstract class ThingFactory<T extends Thing> extends HasNode implements O
     return node;
   }
 
-  boolean selected = false;
-  public void setSelected(boolean selected) {
-    if (selected == this.selected) return;
-    this.selected = selected;
-    if (selected) {
-      node.setBackground(selectedBG);
-    } else {
-      node.setBackground(null);
-    }
-  }
-  
   public abstract String getItemType();
   
 }
