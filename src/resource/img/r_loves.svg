@@ -9,12 +9,15 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="33.173229"
-   height="28.65748"
+   width="29.173227"
+   height="25.65748"
    id="svg7507"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="r_loves.svg">
+   sodipodi:docname="r_loves.svg"
+   inkscape:export-filename="X:\eclipse42\onetwograph\src\resource\img\r_loves.png"
+   inkscape:export-xdpi="74.040001"
+   inkscape:export-ydpi="74.040001">
   <defs
      id="defs7509" />
   <sodipodi:namedview
@@ -25,15 +28,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="17.237528"
-     inkscape:cy="7.777676"
+     inkscape:cx="15.237528"
+     inkscape:cy="6.7776756"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     fit-margin-top="5"
-     fit-margin-left="5"
-     fit-margin-right="5"
-     fit-margin-bottom="3"
+     fit-margin-top="3"
+     fit-margin-left="3"
+     fit-margin-right="3"
+     fit-margin-bottom="2"
      inkscape:window-width="463"
      inkscape:window-height="423"
      inkscape:window-x="1445"
@@ -55,7 +58,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-329.12767,-428.46202)">
+     transform="translate(-331.12767,-430.46202)">
     <g
        style="visibility:visible"
        id="DrawingGroup_2"
