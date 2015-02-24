@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="33.173229"
+   height="28.65748"
+   id="svg7507"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="r_loves.svg">
+  <defs
+     id="defs7509" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="17.237528"
+     inkscape:cy="7.777676"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="5"
+     fit-margin-left="5"
+     fit-margin-right="5"
+     fit-margin-bottom="3"
+     inkscape:window-width="463"
+     inkscape:window-height="423"
+     inkscape:window-x="1445"
+     inkscape:window-y="1255"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7512">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-329.12767,-428.46202)">
+    <g
+       style="visibility:visible"
+       id="DrawingGroup_2"
+       transform="matrix(0.03543307,0,0,0.03543307,-597.9038,389.41871)"
+       inkscape:export-xdpi="93.209999"
+       inkscape:export-ydpi="93.209999"
+       inkscape:export-filename="X:\eclipse42\onetwograph\src\resource\img\r_loves.png">
+      <g
+         id="g91">
+        <rect
+           x="26304"
+           y="1243"
+           width="385"
+           height="377"
+           id="rect93"
+           style="fill:none;stroke:none" />
+        <path
+           id="Drawing_3_0"
+           d="m 26631,1564 c -25,24 -52,39 -86,48 -33,9 -64,9 -98,0 -34,-9 -61,-24 -86,-49 -25,-24 -40,-50 -49,-84 -9,-33 -9,-63 0,-96 9,-34 24,-60 49,-84 25,-24 52,-40 86,-48 34,-9 65,-9 99,0 34,9 60,24 85,48 25,24 41,51 50,84 9,33 9,63 0,97 -10,33 -25,59 -50,84 l 0,0 z"
+           inkscape:connector-curvature="0"
+           style="fill:#000000;stroke:none" />
+      </g>
+      <g
+         id="g96">
+        <rect
+           x="26360"
+           y="1299"
+           width="542"
+           height="527"
+           id="rect98"
+           style="fill:none;stroke:none" />
+        <path
+           id="Drawing_4_0"
+           d="m 26765,1693 -135,132 -270,-262 270,-263 270,262 -135,131 z"
+           inkscape:connector-curvature="0"
+           style="fill:#000000;stroke:none" />
+      </g>
+      <g
+         id="g101">
+        <rect
+           x="26573"
+           y="1243"
+           width="385"
+           height="377"
+           id="rect103"
+           style="fill:none;stroke:none" />
+        <path
+           id="Drawing_5_0"
+           d="m 26900,1564 c -25,24 -52,39 -86,48 -33,9 -64,9 -98,0 -34,-9 -61,-24 -86,-49 -25,-24 -40,-50 -49,-84 -9,-33 -9,-63 0,-96 9,-34 24,-60 49,-84 25,-24 52,-40 86,-48 34,-9 65,-9 99,0 34,9 60,24 85,48 25,24 41,51 50,84 9,33 9,63 0,97 -10,33 -25,59 -50,84 l 0,0 z"
+           inkscape:connector-curvature="0"
+           style="fill:#000000;stroke:none" />
+      </g>
+    </g>
+  </g>
+</svg>

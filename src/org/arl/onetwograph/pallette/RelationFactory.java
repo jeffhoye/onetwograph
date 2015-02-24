@@ -28,11 +28,11 @@ public class RelationFactory extends ThingFactory<Relation> {
     GraphicsContext g = c.getGraphicsContext2D();
 
     // icon scaled in center
-    Image baseIcon = new Image(iconName.getClass().getResourceAsStream(iconName));
+    Image baseIcon = loadImage(iconName);
     double bw = baseIcon.getWidth();
     double bh = baseIcon.getHeight();
     double bm = Math.max(bw, bh); // max
-    double bs = (w-16.0)/bm; // scale w/ 20px inset
+    double bs = (w-16.0)/bm; // scale w/ 16px inset
     double nw = bw*bs; // new width
     double nh = bh*bs; // new height
     g.drawImage(baseIcon, w2-nw/2.0, h2-nh/2.0, nw, nh);

@@ -8,6 +8,14 @@
     <attribute name="traveler" img="/resource/img/a_traveler.png" />
   </palette>    
   <palette name="Relation">
+    <relation name="loves" img="/resource/img/r_loves.png" />
     <relation name="sees" img="/resource/img/r_sees.png" />
+    <relation name="asks" img="/resource/img/r_asks.png" />
+    <relation name="knows" img="/resource/img/r_knows.png" />
+    <relation name="writes" img="/resource/img/r_writes.png" />
+    <relation name="receives" img="/resource/img/r_receives.png" />
+    <relation name="buys" img="/resource/img/r_buys.png" />
+    <relation name="admires" img="/resource/img/r_admires.png" />
+    <relation name="helps" img="/resource/img/r_helps.png" />
   </palette>    
 </palettes>

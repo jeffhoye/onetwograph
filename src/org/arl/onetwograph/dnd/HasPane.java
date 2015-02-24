@@ -1,12 +1,18 @@
 package org.arl.onetwograph.dnd;
 
+import java.io.InputStream;
+
 import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -25,6 +31,31 @@ public class HasPane implements HasNode {
   protected Label label;
   protected ImageView imageView;
   
+  public static Image loadImage(String iconName) {
+    InputStream is = HasPane.class.getResourceAsStream(iconName);
+    if (is == null) {
+      System.out.println("Cant load image "+iconName);
+      
+      double w = 50.0;
+      double h = 50.0;
+      Canvas c = new Canvas(w,h); // yellow arrow
+      GraphicsContext g = c.getGraphicsContext2D();
+      g.setStroke(Color.BLACK);
+      g.setFill(Color.YELLOW);
+      g.setLineWidth(3.0);
+      double[] dx = new double[]{ 6, w/2.0, w-6 };
+      double[] dy = new double[]{ 11, h-5, 11 };
+      g.fillPolygon(dx, dy, 3);
+      g.strokePolygon(dx, dy, 3);
+      
+      SnapshotParameters sp = new SnapshotParameters();
+      sp.setFill(Color.TRANSPARENT);
+      WritableImage ret = c.snapshot(sp, new WritableImage((int)w, (int)h));
+      return ret;
+    }
+    return new Image(is);
+  }
+  
   public HasPane(String type, Image icon) {
     this.text = type;
     this.icon = icon;
@@ -32,7 +63,7 @@ public class HasPane implements HasNode {
 
   public HasPane(String type, String iconName) {
     this.text = type;
-    this.icon = new Image(getClass().getResourceAsStream(iconName));
+    this.icon = loadImage(iconName);
   }
 
   public HasPane(Pane n) {
