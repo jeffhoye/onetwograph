@@ -131,7 +131,7 @@ public class HelloDragAndDrop extends Application {
         stage.show();
     }
  
-    public static void mainn(String[] args) {
+    public static void main(String[] args) {
         Application.launch(args);
     }
 }

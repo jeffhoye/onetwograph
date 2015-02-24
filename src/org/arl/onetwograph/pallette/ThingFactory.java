@@ -38,6 +38,10 @@ public abstract class ThingFactory<T extends Thing> extends HasPane implements O
   
   protected Palette palette;
   
+  public ThingFactory(String type, Image icon) {
+    super(type,icon);
+  }
+
   public ThingFactory(String type, String iconName) {
     super(type,iconName);
   }

@@ -60,9 +60,18 @@ public class HasPane implements HasNode {
     ret.setAlignment(Pos.CENTER);
     return ret;
   }
+
+  /**
+   * used when generating the node to override special for palette mode
+   * 
+   * @return
+   */
+  public Image getNodeIcon() {
+    return this.icon;
+  }
   
   protected Pane generateNode() {
-    imageView = new ImageView(this.icon);
+    imageView = new ImageView(getNodeIcon());
     imageView.setPreserveRatio(true);
     imageView.setFitWidth(getIconWidth());
     imageView.setFitHeight(getIconHeight());
