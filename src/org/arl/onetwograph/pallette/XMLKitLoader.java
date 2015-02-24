@@ -1,6 +1,7 @@
 package org.arl.onetwograph.pallette;
 
 import java.io.File;
+import java.io.InputStream;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -37,7 +38,7 @@ public class XMLKitLoader extends DefaultHandler {
   
   
   
-  public void load(File kit_file) throws Exception {
+  public void load(InputStream kit_file) throws Exception {
     SAXParserFactory factory = SAXParserFactory.newInstance();
     SAXParser saxParser = factory.newSAXParser();
    

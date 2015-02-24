@@ -46,7 +46,8 @@ public class OneTwoGraph extends Application {
     stage.setScene(new Scene(masterPane));
     stage.show();
     
-    new XMLKitLoader(paletteSet).load(new File("resource/standard_kit.xml"));;
+//    new XMLKitLoader(paletteSet).load(new File("resource/standard_kit.xml"));
+    new XMLKitLoader(paletteSet).load(getClass().getResourceAsStream("/resource/standard_kit.xml"));
   }
 
   public static void main(String[] args) {

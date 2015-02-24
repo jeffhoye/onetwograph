@@ -32,7 +32,7 @@ public class HasPane implements HasNode {
 
   public HasPane(String type, String iconName) {
     this.text = type;
-    this.icon = new Image("file:"+iconName,true);
+    this.icon = new Image(getClass().getResourceAsStream(iconName));
   }
 
   public HasPane(Pane n) {
