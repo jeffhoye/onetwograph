@@ -4,6 +4,7 @@ import java.io.InputStream;
 
 import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
@@ -130,6 +131,12 @@ public class HasPane implements HasNode {
   public void setText(String text) {
     this.text = text;
     label.setText(text);
+  }
+
+  public Point2D getLocation() {
+    Bounds b = node.getBoundsInParent();
+    Point2D ret = new Point2D((b.getMinX()+b.getMaxX())/2.0, (b.getMinY()+b.getMaxY())/2.0);
+    return ret;
   }
   
   public void setLocation(double x, double y) {

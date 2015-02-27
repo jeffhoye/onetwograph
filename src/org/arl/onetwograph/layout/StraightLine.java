@@ -14,11 +14,12 @@ public class StraightLine extends Connection {
     line = new Line();
     canvas.getChildren().add(line);
     line.toBack();
+    update();
   }
 
   @Override
   public void update() {
-//    System.out.println("StraightLine.update");
+    System.out.println("StraightLine.update");
     if (a != null && b != null) {
       Bounds aB = a.getBoundsInParent(); //b.getLayoutBounds();
       double x1 = aB.getMinX()+aB.getWidth()/2.0;

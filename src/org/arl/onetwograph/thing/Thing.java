@@ -31,6 +31,7 @@ public class Thing extends HasPane {
 
   public void setCanvas(OTCanvas canvas) {
     this.canvas = canvas;
+    canvas.pane.getChildren().add(getNode());
   }
     
 }

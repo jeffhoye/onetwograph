@@ -2,7 +2,7 @@ package org.arl.onetwograph.pallette;
 
 import org.arl.onetwograph.thing.Actor;
 
-public class ActorFactory extends ThingFactory<Actor> {
+public class ActorFactory extends NounFactory<Actor> {
 
   public ActorFactory(String type, String iconName) {
     super(type,iconName);

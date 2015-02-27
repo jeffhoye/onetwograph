@@ -39,7 +39,6 @@ public class Relation extends Thing {
   }
   
   public void setCanvas(OTCanvas canvas) {
-    super.setCanvas(canvas);
     
     Node a = null;
     if (nounFrom != null) {
@@ -54,8 +53,18 @@ public class Relation extends Thing {
     }
     
     connection = new StraightLine(a, b, icon, canvas.pane);
+    super.setCanvas(canvas);
   }
-
+  
+  public Node getNode() {
+    return connection.getNode();
+  }
+  
+  /**
+   * This allows you to drag either end.
+   * 
+   * @param noun
+   */
   public void setEnd(Noun noun) {
     if (this.nounFrom == null) {
       setFrom(noun);
@@ -66,6 +75,8 @@ public class Relation extends Thing {
   public void remove() {
     setFrom(null);
     setTo(null);
-    connection.remove();
+    if (connection != null) {
+      connection.remove();      
+    }
   }
 }

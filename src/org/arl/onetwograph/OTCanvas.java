@@ -3,6 +3,7 @@ package org.arl.onetwograph;
 import org.arl.onetwograph.dnd.ClipRegistry;
 import org.arl.onetwograph.dnd.HasNode;
 import org.arl.onetwograph.dnd.HasPane;
+import org.arl.onetwograph.dnd.OTFactory;
 import org.arl.onetwograph.layout.StraightLine;
 import org.arl.onetwograph.pallette.ThingFactory;
 import org.arl.onetwograph.thing.Noun;
@@ -11,6 +12,7 @@ import org.arl.onetwograph.thing.Thing;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Bounds;
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -45,13 +47,14 @@ public class OTCanvas {
     this.registry = registry;
     this.pane = pane;
     
-    final Shape mouseHandle = new Circle(-100,-100,8.0);
+    final Shape mouseHandle = new Circle(-100,-100,3.0);
     mouseHandle.setVisible(false);
     pane.getChildren().add(mouseHandle);
     nullDragable = new HasNode() {
       
       @Override
       public void setLocation(double x, double y) {
+//        System.out.println("nullDraggable.setLocation("+x+","+y+")");
         Bounds b = mouseHandle.getBoundsInLocal();
         double w = b.getWidth();
         double h = b.getHeight();
@@ -89,7 +92,6 @@ public class OTCanvas {
         Thing newObj = addThing(registry.getInstance(event.getDragboard()));
         
         newObj.setLocation(event.getX(), event.getY());
-        pane.getChildren().add(newObj.getNode());
       }
     });
         
@@ -102,13 +104,20 @@ public class OTCanvas {
     
     pane.setOnMousePressed(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
-//        System.out.println("cOnMousePressed: "+event.getX()+","+event.getY());
-//        Circle a = new Circle(event.getX(),event.getY(),8.0);        
-//        pane.getChildren().add(a);
-//        Circle b = new Circle(event.getX(),event.getY(),8.0);
-//        pane.getChildren().add(b);
-//        new StraightLine(a, b, registry.getImage("Relation_sees"), pane);
-//        dragging = new HasNode(b);
+        OTFactory<Thing> selectedFactory = registry.getSelected();
+        if (selectedFactory == null) {
+          return;
+        }
+
+        switch(selectedFactory.getType()) {
+        case OTFactory.ACTOR:
+        case OTFactory.PROP:
+          Thing t = (Thing)selectedFactory.getInstance();
+          t.setLocation(event.getX(), event.getY());
+          addThing(t);
+          startDrag(event,t,null);
+          break;
+        }
       }
     });
 
@@ -182,7 +191,8 @@ public class OTCanvas {
       dragTarget.setSelected(false);      
     }
     if (draggingRelation != null) {
-      draggingRelation.setEnd(noun);      
+      draggingRelation.setEnd(noun);
+      registry.deselectAll();
     }
     draggingRelation = null;
     noun.setSelected(false);

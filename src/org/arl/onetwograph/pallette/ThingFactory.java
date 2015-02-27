@@ -71,27 +71,6 @@ public abstract class ThingFactory<T extends Thing> extends HasPane implements O
     final Pane node = (Pane)super.generateNode();
 //    node.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));  
     
-    node.setOnDragDetected(new EventHandler<MouseEvent>() {
-
-      @Override
-      public void handle(MouseEvent event) {
-        System.out.println("Dragging "+text);
-        Dragboard db = node.startDragAndDrop(TransferMode.ANY);
-        
-        /* Put a string on a dragboard */
-        ClipboardContent content = new ClipboardContent();
-        if (text != null) {
-          content.putString(text);          
-        }
-        content.putImage(icon);
-        content.put(format,getClipRegistryKey());
-        db.setContent(content);
-        
-        event.consume();
-      }
-      
-    });
-    
     node.setOnMouseClicked(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         if (selected) {

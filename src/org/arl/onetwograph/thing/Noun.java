@@ -3,6 +3,7 @@ package org.arl.onetwograph.thing;
 import org.arl.onetwograph.dnd.OTFactory;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
@@ -33,7 +34,8 @@ public class Noun extends Thing {
           
           Relation r = (Relation)selectedFactory.getInstance();
           r.setFrom(Noun.this);
-          canvas.nullDragable.setLocation(event.getX(), event.getY());
+          Point2D l = Noun.this.getLocation();
+          canvas.nullDragable.setLocation(l.getX(), l.getY());
           canvas.nullDragable.getNode().setVisible(true);
           canvas.addThing(r);
           canvas.startDrag(event,canvas.nullDragable,r);

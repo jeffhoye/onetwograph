@@ -18,9 +18,7 @@ public abstract class Connection implements ChangeListener<Number>{
     setB(b);
     this.icon = new ImageView(icon);
     this.canvas = canvas;
-    
-    this.canvas.getChildren().add(this.icon);
-    
+//    this.canvas.getChildren().add(this.icon); // done with call to getNode();
   }
 
   public void setA(Node a) {
@@ -62,4 +60,8 @@ public abstract class Connection implements ChangeListener<Number>{
     setB(null);
     this.canvas.getChildren().remove(this.icon);
   }  
+  
+  public Node getNode() {
+    return icon;
+  }
 }

@@ -50,5 +50,12 @@ public class ClipRegistry<T> {
   public OTFactory<T> getSelected() {
     return selected;
   }
+
+  public void deselectAll() {
+    selected = null;
+    for (OTFactory<T> t : table.values()) {
+      t.setSelected(false);
+    }
+  }
   
 }
