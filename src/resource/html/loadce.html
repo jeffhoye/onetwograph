@@ -1,0 +1,21 @@
+<script type="text/javascript" src="cenode.js"></script>
+<script>
+var my_model = [
+  "conceptualise a ~ teacher ~ T.",
+  "conceptualise a ~ class ~ C.",
+  "conceptualise the teacher T ~ teaches ~ the class C.",
+  "there is a teacher named 'Mrs Smith' that teaches the class 'B2'."
+];
+
+var cenode = new CENode(MODELS.CORE, my_model);
+
+/*
+cenode.add_sentence("there is a teacher named 'Mrs Smith'");
+var data = cenode.ask_question("who is Mrs Smith?");
+alert("monkey");
+for (var f in data) {
+  alert(f+":"+data[f]);
+}
+alert(data);
+*/
+</script>
